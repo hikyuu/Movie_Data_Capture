@@ -2,22 +2,25 @@ name: PyInstaller
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+    tags:
+      - '*'
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        os: [ windows-latest, macos-latest, ubuntu-latest ]
 
     steps:
-      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v4
+
+      - uses: olegtarasov/get-tag@v2.1.2
+        id: tag
+
+      - name: Replace version
+        run: sed -i'' -e "s/version = .*/version = '${{ steps.tag.outputs.tag }}'/" Movie_Data_Capture.py
 
       - name: Install UPX
         uses: crazy-max/ghaction-upx@v2
