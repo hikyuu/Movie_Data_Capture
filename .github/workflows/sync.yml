@@ -42,4 +42,4 @@ jobs:
     - name: Sync upstream tags
       run: |
         git fetch upstream --tags
-        git push --tags origin
+        git push origin --tags
