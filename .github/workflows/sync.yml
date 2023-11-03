@@ -31,3 +31,20 @@ jobs:
       run: |
         git fetch upstream --tags
         git push --tags
+
+      # REQUIRED step
+      # Step 3: run the sync action
+    - name: Sync upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+      with:
+        target_sync_branch: build
+        # REQUIRED 'target_repo_token' exactly like this!
+        target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+        upstream_sync_branch: master
+        upstream_sync_repo: yoshiko2/Movie_Data_Capture
+        # Set test_mode true to run tests instead of the true action!!
+    - name: Sync upstream tags
+      run: |
+        git fetch upstream --tags
+        git push --tags
