@@ -35,7 +35,6 @@ jobs:
       # REQUIRED step
       # Step 3: run the sync action
     - name: Sync upstream changes
-      id: sync
       uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
       with:
         target_sync_branch: build
