@@ -40,6 +40,8 @@ jobs:
         upstream_sync_repo: yoshiko2/Movie_Data_Capture
         # Set test_mode true to run tests instead of the true action!!
     - name: Sync upstream tags
+      permissions:
+        contents: write
       run: |
         git fetch upstream --tags
         git push --tags
